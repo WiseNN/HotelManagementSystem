@@ -18,6 +18,11 @@ public class SystemConstants {
 }
 
 
+    enum RoomTypeConst {
+        SUITE, REG, HANDI
+    }
+
+
 
 
 
