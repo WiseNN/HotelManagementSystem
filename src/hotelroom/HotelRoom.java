@@ -13,7 +13,8 @@ import hotelmanagementsystemapp.SysConstants.RoomTypeConst;
  *
  * @author kyleaustin
  */
-public class HotelRoom {
+public class HotelRoom 
+{
 
     /**
      * @param args the command line arguments
@@ -21,20 +22,22 @@ public class HotelRoom {
     public static int myNum = 0;
     public int myNum2 = 0;
     
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception 
+    {
         Sqllc s = new Sqllc();
-        int temproomnummber = (int) (Math.random());
-            s.insertCID(2, 3, 4);
-            s.insertCOD(2, 3, 4);
-            s.insertRoom(temproomnummber, "Suite");
-       // System.out.print(s.getCheckInDay(2, 3, 4));
-         //   System.out.print(s.getCheckInMonth(2, 3, 4));
-           // System.out.print(s.getCheckInYear(2, 3, 4));
-            //System.out.print(s.getCheckOutDay(2, 3, 4));
-            //System.out.print(s.getCheckOutMonth(2, 3, 4));
-            //System.out.print(s.getCheckOutYear(2, 3, 4));
-            //System.out.print(s.getRoomType( temproomnummber));
-        // Scanner names = new Scanner(System.in);
+        System.out.println("verify print");
+        int temproomnummber = 102;
+//            s.insertCID(2, 3, 4);
+//            s.insertCOD(2, 3, 4);
+//            s.insertRoom(temproomnummber, "Suite");
+            s.getCheckInDay(2, 3, 4);
+            s.getCheckInMonth(2, 3, 4);
+            s.getCheckInYear(2, 3, 4);
+            s.getCheckOutDay(2, 3, 4);
+            s.getCheckOutMonth(2, 3, 4);
+            s.getCheckOutYear(2, 3, 4);
+            s.getRoomType( temproomnummber);
+         
     }
 
     //

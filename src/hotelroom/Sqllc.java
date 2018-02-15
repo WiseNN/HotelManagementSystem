@@ -686,7 +686,7 @@ public class Sqllc {
             updateemp.setInt(1, roomnumber);
             // updateemp.setString(2, lastname);
             rs = updateemp.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 retstr =rs.getString("RoomType");
                 // String name = rs.getString("name");
                 //System.out.println("NAME = " + name);
@@ -694,8 +694,7 @@ public class Sqllc {
 
             }
 
-            rs.close();
-            st.close();
+            
             con.close();
             return retstr;
         } catch (Exception e) {
@@ -735,7 +734,8 @@ public class Sqllc {
             
             // updateemp.setString(2, lastname);
             rs = updateemp.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) 
+            {
                 day = rs.getInt("CID");
                 // String name = rs.getString("name");
                 //System.out.println("NAME = " + name);
@@ -743,8 +743,8 @@ public class Sqllc {
 
             }
 
-            rs.close();
-            st.close();
+//            rs.close();
+//            st.close();
             con.close();
             return day;
         } catch (Exception e) {
@@ -783,7 +783,7 @@ public class Sqllc {
             
             // updateemp.setString(2, lastname);
             rs = updateemp.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 month = rs.getInt("CIM");
                 // String name = rs.getString("name");
                 //System.out.println("NAME = " + name);
@@ -791,8 +791,7 @@ public class Sqllc {
 
             }
 
-            rs.close();
-            st.close();
+            
             con.close();
             return month;
         } catch (Exception e) {
@@ -832,7 +831,7 @@ public class Sqllc {
             
             // updateemp.setString(2, lastname);
             rs = updateemp.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 year = rs.getInt("CIY");
                 // String name = rs.getString("name");
                 //System.out.println("NAME = " + name);
@@ -840,8 +839,7 @@ public class Sqllc {
 
             }
 
-            rs.close();
-            st.close();
+            
             con.close();
             return year;
         } catch (Exception e) {
@@ -881,7 +879,7 @@ public class Sqllc {
             
             // updateemp.setString(2, lastname);
             rs = updateemp.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 day = rs.getInt("COD");
                 // String name = rs.getString("name");
                 //System.out.println("NAME = " + name);
@@ -889,8 +887,7 @@ public class Sqllc {
 
             }
 
-            rs.close();
-            st.close();
+            
             con.close();
             return day;
         } catch (Exception e) {
@@ -930,7 +927,7 @@ public class Sqllc {
             
             // updateemp.setString(2, lastname);
             rs = updateemp.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 month = rs.getInt("COM");
                 // String name = rs.getString("name");
                 //System.out.println("NAME = " + name);
@@ -938,8 +935,7 @@ public class Sqllc {
 
             }
 
-            rs.close();
-            st.close();
+            
             con.close();
             return month;
         } catch (Exception e) {
@@ -968,7 +964,7 @@ public class Sqllc {
 
             //st = con.createStatement();
             //sqlite> SELECT * FROM COMPANY WHERE AGE  GLOB '2*';
-            String search = ("SELECT * FROM Guest WHERE CID GLOB ? AND CIM GLOB ? AND CIY GLOB ? ");
+            String search = ("SELECT * FROM Guest WHERE CID GLOB ? AND CIM GLOB ? AND COY GLOB ? ");
 
             PreparedStatement updateemp = con.prepareStatement(search);
 
@@ -979,7 +975,7 @@ public class Sqllc {
             
             // updateemp.setString(2, lastname);
             rs = updateemp.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 year = rs.getInt("COY)");
                 // String name = rs.getString("name");
                 //System.out.println("NAME = " + name);
@@ -987,8 +983,7 @@ public class Sqllc {
 
             }
 
-            rs.close();
-            st.close();
+            
             con.close();
             return year;
         } catch (Exception e) {
