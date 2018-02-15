@@ -29,7 +29,7 @@ import java.sql.Statement;
  * con.createStatement();
  *
  * String url = "org.sqlite.JDBC"; con =
- * DriverManager.getConnection("jdbc:sqlite:db3.sqlite"); st =
+ * DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite"); st =
  * con.createStatement(); con.setAutoCommit(false); FN =
  * con.prepareStatement(LNS); LN = con.prepareStatement(LNS); //rs =
  * st.executeQuery("SELECT * FROM T1;");
@@ -67,15 +67,15 @@ public class Sqllc {
     public void insertGuestRow(String firstname, String lastname, int age,
             int cid, int cim, int ciy,
             int cod, int com, int coy, int nor) {
-    /* The method inserts a  a name, age, check in date, check out date
+        /* The method inserts a  a name, age, check in date, check out date
         and the number of rooms for the customer into the database.      
-    */
+         */
 
         Connection con = null;
 
         try {
             Class.forName("org.sqlite.JDBC");
-            con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
+            con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
             PreparedStatement updateemp = con.prepareStatement("insert into Guest(Pkey,FN,LN,Age"
                     + ",CID,CIM,CIY,COD,COM,COY,NumRooms)" + " values(null,?,?,?,?,?,?,?,?,?,?)");
 
@@ -102,9 +102,9 @@ public class Sqllc {
     public void updateGuestRow(String firstname, String lastname, int age,
             int cid, int cim, int ciy,
             int cod, int com, int coy, int nor) {
-         /* The method updates/ changes the name, age, check in date, check out date
+        /* The method updates/ changes the name, age, check in date, check out date
         and the number of rooms for the customer in the database.      
-    */
+         */
         {
             Connection con = null;
 
@@ -115,7 +115,7 @@ public class Sqllc {
 
                 try {
                     Class.forName("org.sqlite.JDBC");
-                    con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
+                    con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
                     PreparedStatement updateemp = con.prepareStatement("UPDATE Guest "
                             + "SET FN = ?, LN = ?, Age = ?, CID = ?, CIM = ?, CIY = ?,"
                             + " COD = ?, COM = ?, COY = ?, NumRooms = ? WHERE PKey = ?");
@@ -141,7 +141,8 @@ public class Sqllc {
             }
         }
     }
-    public void updateRoom(int oldroomnum ,int roomnumber, String firstname, String lastname, String roomtype){
+
+    public void updateRoom(int oldroomnum, int roomnumber, String firstname, String lastname, String roomtype) {
         /* the methods take the inputs of the old room number and the new room number and update(change)
         the values of the RoomNum, GuestID, and RoomType column for a single row */
         {
@@ -155,7 +156,7 @@ public class Sqllc {
 
                 try {
                     Class.forName("org.sqlite.JDBC");
-                    con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
+                    con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
                     PreparedStatement updateemp = con.prepareStatement("UPDATE Rooms "
                             + "SET  RoomNum = ?, GuestID = ?, RoomType = ? WHERE RoomID = ?");
 
@@ -163,7 +164,7 @@ public class Sqllc {
                     updateemp.setInt(1, roomnumber);
                     updateemp.setInt(2, id);
                     updateemp.setString(3, roomtype);
-                    updateemp.setInt(4,roomid);
+                    updateemp.setInt(4, roomid);
                     updateemp.executeUpdate();
 
                     con.close();
@@ -175,17 +176,16 @@ public class Sqllc {
         }
     }
 
-   
     public void insertFLA(String firstname, String lastname, int age) throws Exception {
-         /* The method inserts a name, age, into the database. This does not update, and 
+        /* The method inserts a name, age, into the database. This does not update, and 
         istead creates a new line filled with only this information and the rest of the 
         values contain null.      
-    */
+         */
         Connection con = null;
 
         try {
             Class.forName("org.sqlite.JDBC");
-            con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
+            con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
             PreparedStatement updateemp = con.prepareStatement("insert into guest(Pkey,FN,LN,Age)"
                     + "values(null,?,?,?)");
 
@@ -211,7 +211,7 @@ public class Sqllc {
 
             try {
                 Class.forName("org.sqlite.JDBC");
-                con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
+                con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
                 PreparedStatement updateemp = con.prepareStatement("insert into guest(Pkey,FN,LN,Age)"
                         + "values(,?,?,?)");
 
@@ -233,13 +233,13 @@ public class Sqllc {
         /*The method inserts a the check in date into the database. This does not update, and 
         istead creates a new line filled with only this information and the rest of the 
         values contain null*/
-        
+
         Connection con = null;
 
         try {
             Class.forName("org.sqlite.JDBC");
-            con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
-            PreparedStatement updateemp = con.prepareStatement("insert into guest(CID,CIM,CIY)"
+            con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
+            PreparedStatement updateemp = con.prepareStatement("insert into Guest(CID,CIM,CIY)"
                     + "values(?,?,?)");
 
             updateemp.setInt(1, checkinday);
@@ -258,7 +258,7 @@ public class Sqllc {
         /*The method updates the check in date that was previosly inserted into the database for a 
         specific customer. This does not insert  a new row, and only updates an exsisting row
         within the database.
-        */
+         */
         Connection con = null;
 
         if ((getGuestID(FN, LN)) == -1) {
@@ -268,7 +268,7 @@ public class Sqllc {
 
             try {
                 Class.forName("org.sqlite.JDBC");
-                con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
+                con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
                 PreparedStatement updateemp = con.prepareStatement("UPDATE Guest "
                         + "SET CID = ?, CIM = ?, CIY = ? WHERE PKey = ?");
 
@@ -294,7 +294,7 @@ public class Sqllc {
 
         try {
             Class.forName("org.sqlite.JDBC");
-            con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
+            con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
             PreparedStatement updateemp = con.prepareStatement("insert into guest(CID,CIM,CIY)"
                     + "values(?,?,?)");
 
@@ -315,7 +315,7 @@ public class Sqllc {
         /*The method updates the check out date that was previosly inserted into the database for a 
         specific customer. This does not insert  a new row, and only updates an exsisting row
         within the database.*/
-        
+
         Connection con = null;
 
         if ((getGuestID(FN, LN)) == -1) {
@@ -325,7 +325,7 @@ public class Sqllc {
 
             try {
                 Class.forName("org.sqlite.JDBC");
-                con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
+                con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
                 PreparedStatement updateemp = con.prepareStatement("UPDATE Guest "
                         + "SET COD = ?, COM = ?, COY = ? WHERE PKey = ?");
 
@@ -344,7 +344,7 @@ public class Sqllc {
     }
 
     public void insertRoomWithName(int roomnumber, String GuestFN, String GuestLN, String roomtype) throws Exception {
-         /*The method inserts a the a room number for a customer from the  guest table into the room table. This  method 
+        /*The method inserts a the a room number for a customer from the  guest table into the room table. This  method 
         requires that a the customer the room is created for already exsist in the guest database.*/
         Connection con = null;
 
@@ -355,13 +355,13 @@ public class Sqllc {
         }
         try {
             Class.forName("org.sqlite.JDBC");
-            con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
+            con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
             PreparedStatement updateemp = con.prepareStatement("insert into rooms(RoomID,RoomNum,GuestID,RoomType)"
                     + "values(null,?,?,?)");
 
             updateemp.setInt(1, roomnumber);
             updateemp.setInt(2, id);
-            updateemp.setString(3,roomtype);
+            updateemp.setString(3, roomtype);
             updateemp.executeUpdate();
 
             con.close();
@@ -371,15 +371,15 @@ public class Sqllc {
         }
     }
 
-    public void insertRoom(int roomnumber, String roomtype) throws Exception {
-         /*The method inserts a the a room number and room type into the room table. This  method 
+    public void insertRoom(Integer roomnumber, String roomtype) throws Exception {
+        /*The method inserts a the a room number and room type into the room table. This  method 
         does not requires that a the customer name exsis for the room to be created.*/
-         
+
         Connection con = null;
 
         try {
             Class.forName("org.sqlite.JDBC");
-            con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
+            con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
             PreparedStatement updateemp = con.prepareStatement("insert into rooms(RoomID,RoomNum,GuestID,RoomType)"
                     + "values(null,?,null,?)");
 
@@ -396,7 +396,7 @@ public class Sqllc {
 
     public void ReplaceRoomID(String oldFN, String oldLN, String newFN, String newLN) {
         // method still in development*/
-         
+
         Connection con = null;
 
         if ((getGuestID(oldFN, oldLN)) == 0) {
@@ -406,7 +406,7 @@ public class Sqllc {
 
             try {
                 Class.forName("org.sqlite.JDBC");
-                con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
+                con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
                 PreparedStatement updateemp = con.prepareStatement("UPDATE Guest "
                         + "SET FN = ?, LN = ? WHERE PKey = ?");
 
@@ -434,7 +434,7 @@ public class Sqllc {
 
             try {
                 Class.forName("org.sqlite.JDBC");
-                con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
+                con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
                 PreparedStatement updateemp = con.prepareStatement("UPDATE Rooms "
                         + "SET GuestID = ? WHERE RoomID = ?");
 
@@ -464,7 +464,7 @@ public class Sqllc {
 
             try {
                 Class.forName("org.sqlite.JDBC");
-                con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
+                con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
                 PreparedStatement updateemp = con.prepareStatement("UPDATE Rooms "
                         + "SET GuestID = NULL where RoomID = ? ");
                 //Update myTable set MyColumn = NULL where Field = Condition
@@ -484,7 +484,7 @@ public class Sqllc {
         to search the database for the specific row, identified by the primary key,
         and return that value so that the information of that specific customer can 
         be accessed.
-        */
+         */
         Connection con = null;
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -492,30 +492,28 @@ public class Sqllc {
         int id = -1;
 
         try {
-                Class.forName("org.sqlite.JDBC");
-                con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
-//                Connection connection = DriverManager.getConnection("jdbc:sqlite::db3.sqlite:");
+            Class.forName("org.sqlite.JDBC");
+            con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
+//                Connection connection = DriverManager.getConnection("jdbc:sqlite::inSystemDb.sqlite:");
 
+            String search = ("SELECT * FROM Guest " + "WHERE FN GLOB ? AND LN GLOB ?");
+            PreparedStatement updateemp = con.prepareStatement(search);
+            System.out.print(id);
 
-                String search = ("SELECT * FROM Guest " + "WHERE FN GLOB ? AND LN GLOB ?");
-                PreparedStatement updateemp = con.prepareStatement(search);
-                System.out.print(id);
+            //SELECT * FROM COMPANY WHERE AGE >= 25 AND SALARY >= 65000
+            updateemp.setString(1, firstname);
+            updateemp.setString(2, lastname);
+            rs = updateemp.executeQuery();
 
-                //SELECT * FROM COMPANY WHERE AGE >= 25 AND SALARY >= 65000
-                updateemp.setString(1, firstname);
-                updateemp.setString(2, lastname);
-                rs = updateemp.executeQuery();
-                
-                while (rs.next()) 
-                {
-                    id = rs.getInt("PKey");
-                    // String name = rs.getString("name");
-                    System.out.println("ID = " + id);
-                    //System.out.println("NAME = " + name);
-                    System.out.println();
+            while (rs.next()) {
+                id = rs.getInt("PKey");
+                // String name = rs.getString("name");
+                System.out.println("ID = " + id);
+                //System.out.println("NAME = " + name);
+                System.out.println();
 
             }
-            
+
             rs.close();
             st.close();
             con.close();
@@ -523,7 +521,7 @@ public class Sqllc {
             return id;
         } catch (Exception e) {
             if (id == -1) {
-                System.err.println("Got an exception,get  guest primary key! Error: "+e.getLocalizedMessage());
+                System.err.println("Got an exception,get  guest primary key! Error: " + e.getLocalizedMessage());
                 //System.err.println(e.getMessage());
                 return id;
             } else {
@@ -537,7 +535,7 @@ public class Sqllc {
         to search the database for the specific row containing these values, identified by the primary key,
         and returns the primary key/ row value so that the information of that specific customer can 
         be accessed.
-        */
+         */
         Connection con = null;
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -546,7 +544,7 @@ public class Sqllc {
 
         try {
             Class.forName("org.sqlite.JDBC");
-            con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
+            con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
             //st = con.createStatement();
             //
             String search = ("SELECT * FROM Guest " + "WHERE FN GLOB ? AND LN GLOB ? AND Age GLOB ?");
@@ -592,7 +590,7 @@ public class Sqllc {
 
             try {
                 Class.forName("org.sqlite.JDBC");
-                con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
+                con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
                 PreparedStatement updateemp = con.prepareStatement("DELETE from Guest where PKey = ?;");
 
                 updateemp.setInt(2, id);
@@ -618,7 +616,7 @@ public class Sqllc {
 
             try {
                 Class.forName("org.sqlite.JDBC");
-                con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
+                con = DriverManager.getConnection("jdbc:sqlite:.sqlite");
                 PreparedStatement updateemp = con.prepareStatement("UPDATE Guest "
                         + "SET FN = ?, LN = ?, Age = ? WHERE PKey = ?");
 
@@ -647,7 +645,7 @@ public class Sqllc {
 
             try {
                 Class.forName("org.sqlite.JDBC");
-                con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
+                con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
                 PreparedStatement updateemp = con.prepareStatement("DELETE from Guest where PKey = ?;");
 
                 updateemp.setInt(2, id);
@@ -661,6 +659,346 @@ public class Sqllc {
         }
     }
 
+    public String getRoomType( int roomnumber) {
+        /* This method uses room number stored in the database to search the database for the 
+        specific row containing the value, identified by the primary key,
+        and returns the primary key/row value so that the information of that specific room can 
+        be accessed.
+         */
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        int id = getRoomID(roomnumber);
+        String retstr = "no switch";
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+//          con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
+            con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
+
+            //st = con.createStatement();
+            //sqlite> SELECT * FROM COMPANY WHERE AGE  GLOB '2*';
+            String search = ("SELECT * FROM Rooms WHERE RoomNum GLOB ? ");
+
+            PreparedStatement updateemp = con.prepareStatement(search);
+
+            //SELECT * FROM COMPANY WHERE AGE >= 25 AND SALARY >= 65000
+            updateemp.setInt(1, roomnumber);
+            // updateemp.setString(2, lastname);
+            rs = updateemp.executeQuery();
+            while (rs.next()) {
+                retstr =rs.getString("RoomType");
+                // String name = rs.getString("name");
+                //System.out.println("NAME = " + name);
+                System.out.println();
+
+            }
+
+            rs.close();
+            st.close();
+            con.close();
+            return retstr;
+        } catch (Exception e) {
+            System.err.println("Got an exception,get room type! ");
+            //System.err.println(e.getMessage());
+            return retstr;
+
+        }
+    }
+     public int getCheckInDay(int checkinday, int checkinmonth, int checkinyear) {
+        /* This method uses room number stored in the database to search the database for the 
+        specific row containing the value, identified by the primary key,
+        and returns the primary key/row value so that the information of that specific room can 
+        be accessed.
+         */
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        int day = 0;
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+//          con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
+            con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
+
+            //st = con.createStatement();
+            //sqlite> SELECT * FROM COMPANY WHERE AGE  GLOB '2*';
+            String search = ("SELECT * FROM Guest WHERE CID GLOB ? AND CIM GLOB ? AND CIY GLOB ? ");
+
+            PreparedStatement updateemp = con.prepareStatement(search);
+
+            //SELECT * FROM COMPANY WHERE AGE >= 25 AND SALARY >= 65000
+            updateemp.setInt(1, checkinday);
+            updateemp.setInt(2, checkinmonth);
+            updateemp.setInt(3, checkinyear);
+            
+            // updateemp.setString(2, lastname);
+            rs = updateemp.executeQuery();
+            while (rs.next()) {
+                day = rs.getInt("CID");
+                // String name = rs.getString("name");
+                //System.out.println("NAME = " + name);
+                System.out.println();
+
+            }
+
+            rs.close();
+            st.close();
+            con.close();
+            return day;
+        } catch (Exception e) {
+            System.err.println("Got an exception,get check in day is");
+            return day;
+
+        }
+    }
+     public int getCheckInMonth(int checkinday, int checkinmonth, int checkinyear) {
+        /* This method uses room number stored in the database to search the database for the 
+        specific row containing the value, identified by the primary key,
+        and returns the primary key/row value so that the information of that specific room can 
+        be accessed.
+         */
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        int month = 0;
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+//          con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
+            con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
+
+            //st = con.createStatement();
+            //sqlite> SELECT * FROM COMPANY WHERE AGE  GLOB '2*';
+            String search = ("SELECT * FROM Guest WHERE CID GLOB ? AND CIM GLOB ? AND CIY GLOB ? ");
+
+            PreparedStatement updateemp = con.prepareStatement(search);
+
+            //SELECT * FROM COMPANY WHERE AGE >= 25 AND SALARY >= 65000
+            updateemp.setInt(1, checkinday);
+            updateemp.setInt(2, checkinmonth);
+            updateemp.setInt(3, checkinyear);
+            
+            // updateemp.setString(2, lastname);
+            rs = updateemp.executeQuery();
+            while (rs.next()) {
+                month = rs.getInt("CIM");
+                // String name = rs.getString("name");
+                //System.out.println("NAME = " + name);
+                System.out.println();
+
+            }
+
+            rs.close();
+            st.close();
+            con.close();
+            return month;
+        } catch (Exception e) {
+            System.err.println("Got an exception,get check in  month ! ");
+            //System.err.println(e.getMessage());
+            return month;
+
+        }
+    }
+     public int getCheckInYear(int checkinday, int checkinmonth, int checkinyear) {
+        /* This method uses room number stored in the database to search the database for the 
+        specific row containing the value, identified by the primary key,
+        and returns the primary key/row value so that the information of that specific room can 
+        be accessed.
+         */
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        int year = 0;
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+//          con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
+            con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
+
+            //st = con.createStatement();
+            //sqlite> SELECT * FROM COMPANY WHERE AGE  GLOB '2*';
+            String search = ("SELECT * FROM Guest WHERE CID GLOB ? AND CIM GLOB ? AND CIY GLOB ? ");
+
+            PreparedStatement updateemp = con.prepareStatement(search);
+
+            //SELECT * FROM COMPANY WHERE AGE >= 25 AND SALARY >= 65000
+            updateemp.setInt(1, checkinday);
+            updateemp.setInt(2, checkinmonth);
+            updateemp.setInt(3, checkinyear);
+            
+            // updateemp.setString(2, lastname);
+            rs = updateemp.executeQuery();
+            while (rs.next()) {
+                year = rs.getInt("CIY");
+                // String name = rs.getString("name");
+                //System.out.println("NAME = " + name);
+                System.out.println();
+
+            }
+
+            rs.close();
+            st.close();
+            con.close();
+            return year;
+        } catch (Exception e) {
+            System.err.println("Got an exception,get check in year! ");
+            //System.err.println(e.getMessage());
+            return year;
+
+        }
+    }
+      int getCheckOutDay(int checkinday, int checkinmonth, int checkinyear) {
+        /* This method uses room number stored in the database to search the database for the 
+        specific row containing the value, identified by the primary key,
+        and returns the primary key/row value so that the information of that specific room can 
+        be accessed.
+         */
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        int day = 0;
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+//          con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
+            con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
+
+            //st = con.createStatement();
+            //sqlite> SELECT * FROM COMPANY WHERE AGE  GLOB '2*';
+            String search = ("SELECT * FROM Guest WHERE CID GLOB ? AND CIM GLOB ? AND CIY GLOB ? ");
+
+            PreparedStatement updateemp = con.prepareStatement(search);
+
+            //SELECT * FROM COMPANY WHERE AGE >= 25 AND SALARY >= 65000
+            updateemp.setInt(1, checkinday);
+            updateemp.setInt(2, checkinmonth);
+            updateemp.setInt(3, checkinyear);
+            
+            // updateemp.setString(2, lastname);
+            rs = updateemp.executeQuery();
+            while (rs.next()) {
+                day = rs.getInt("COD");
+                // String name = rs.getString("name");
+                //System.out.println("NAME = " + name);
+                System.out.println();
+
+            }
+
+            rs.close();
+            st.close();
+            con.close();
+            return day;
+        } catch (Exception e) {
+            System.err.println("Got an exception,get check out day! ");
+            //System.err.println(e.getMessage());
+            return day;
+
+        }
+    }
+     public int getCheckOutMonth(int checkinday, int checkinmonth, int checkinyear) {
+        /* This method uses room number stored in the database to search the database for the 
+        specific row containing the value, identified by the primary key,
+        and returns the primary key/row value so that the information of that specific room can 
+        be accessed.
+         */
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        int month = 0;
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+//          con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
+            con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
+
+            //st = con.createStatement();
+            //sqlite> SELECT * FROM COMPANY WHERE AGE  GLOB '2*';
+            String search = ("SELECT * FROM Guest WHERE CID GLOB ? AND CIM GLOB ? AND CIY GLOB ? ");
+
+            PreparedStatement updateemp = con.prepareStatement(search);
+
+            //SELECT * FROM COMPANY WHERE AGE >= 25 AND SALARY >= 65000
+            updateemp.setInt(1, checkinday);
+            updateemp.setInt(2, checkinmonth);
+            updateemp.setInt(3, checkinyear);
+            
+            // updateemp.setString(2, lastname);
+            rs = updateemp.executeQuery();
+            while (rs.next()) {
+                month = rs.getInt("COM");
+                // String name = rs.getString("name");
+                //System.out.println("NAME = " + name);
+                System.out.println();
+
+            }
+
+            rs.close();
+            st.close();
+            con.close();
+            return month;
+        } catch (Exception e) {
+            System.err.println("Got an exception,get check out month! ");
+            //System.err.println(e.getMessage());
+            return month;
+
+        }
+    }
+     public int getCheckOutYear(int checkinday, int checkinmonth, int checkinyear) {
+        /* This method uses room number stored in the database to search the database for the 
+        specific row containing the value, identified by the primary key,
+        and returns the primary key/row value so that the information of that specific room can 
+        be accessed.
+         */
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        int year = 0;
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+//          con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
+            con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
+
+            //st = con.createStatement();
+            //sqlite> SELECT * FROM COMPANY WHERE AGE  GLOB '2*';
+            String search = ("SELECT * FROM Guest WHERE CID GLOB ? AND CIM GLOB ? AND CIY GLOB ? ");
+
+            PreparedStatement updateemp = con.prepareStatement(search);
+
+            //SELECT * FROM COMPANY WHERE AGE >= 25 AND SALARY >= 65000
+            updateemp.setInt(1, checkinday);
+            updateemp.setInt(2, checkinmonth);
+            updateemp.setInt(3, checkinyear);
+            
+            // updateemp.setString(2, lastname);
+            rs = updateemp.executeQuery();
+            while (rs.next()) {
+                year = rs.getInt("COY)");
+                // String name = rs.getString("name");
+                //System.out.println("NAME = " + name);
+                System.out.println();
+
+            }
+
+            rs.close();
+            st.close();
+            con.close();
+            return year;
+        } catch (Exception e) {
+            System.err.println("Got an exception,get check out year! Error: "+e.getLocalizedMessage());
+            //System.err.println(e.getMessage());
+            return year;
+
+        }
+    }
+    
     public int getRoomID(int roomnumber) {
         /* This method uses room number stored in the database to search the database for the 
         specific row containing the value, identified by the primary key,
@@ -675,8 +1013,8 @@ public class Sqllc {
 
         try {
             Class.forName("org.sqlite.JDBC");
-//            con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
-            con = DriverManager.getConnection("jdbc:sqlite:/Users/kyleaustin/NetBeansProjects/HotelManagementSystem/src/hotelroom/db3.sqlite");
+//            con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
+            con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
             
             //st = con.createStatement();
             //sqlite> SELECT * FROM COMPANY WHERE AGE  GLOB '2*';
@@ -712,11 +1050,11 @@ public class Sqllc {
         }
 
     }
-    public static void main (String[] args)
-    {
+
+    public static void main(String[] args) {
         Sqllc s = new Sqllc();
-       System.out.print(s.getGuestID("Taylor", "Long"));
-       s.insertGuestRow(null, null, 0, 0, 0, 0, 0, 0, 0, 0);
+        System.out.print(s.getGuestID("Taylor", "Long"));
+        s.insertGuestRow(null, null, 0, 0, 0, 0, 0, 0, 0, 0);
     }
 }
 /*
@@ -733,7 +1071,7 @@ public class Sqllc {
 
             try {
                 Class.forName("org.sqlite.JDBC");
-                con = DriverManager.getConnection("jdbc:sqlite:db3.sqlite");
+                con = DriverManager.getConnection("jdbc:sqlite:inSystemDb.sqlite");
                 //st = con.createStatement();
                 //sqlite> SELECT * FROM COMPANY WHERE AGE  GLOB '2*';
                 String search = ("SELECT * FROM Guest WHERE ? GLOB ? ");
