@@ -114,7 +114,7 @@ public class ReservationSystemUIController implements Initializable
     }
 
     @FXML
-    void onClickedSearchBtn(MouseEvent event) 
+    void onClickedSearchBtn(MouseEvent event) throws Exception 
     {
         
             //param1: LocalDate, param2: LocalDate
