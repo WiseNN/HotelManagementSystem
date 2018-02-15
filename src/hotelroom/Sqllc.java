@@ -716,6 +716,7 @@ public class Sqllc {
     {
         Sqllc s = new Sqllc();
        System.out.print(s.getGuestID("Taylor", "Long"));
+       s.insertGuestRow(null, null, 0, 0, 0, 0, 0, 0, 0, 0);
     }
 }
 /*
