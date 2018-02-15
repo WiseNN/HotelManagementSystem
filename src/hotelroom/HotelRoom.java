@@ -6,37 +6,80 @@
 package hotelroom;
 
 import java.time.LocalDate;
+import hotelmanagementsystemapp.SysConstants.RoomTypeConst;
 
 /**
  *
  * @author kyleaustin
  */
-public class HotelRoom {
+public class HotelRoom 
+{
 
     /**
      * @param args the command line arguments
      */
+    
+    public static int myNum = 0;
+    public int myNum2 = 0;
+    
+    
     public static void main(String[] args) 
     {
       // Scanner names = new Scanner(System.in);
     }
-    public static void bookRoom(LocalDate fromDate, LocalDate toDate, RoomTypeConst roomType, int numOfRooms)
+    public void bookRoom(LocalDate fromDate, LocalDate toDate, RoomTypeConst roomType, int numOfRooms)
     {
+        
       
-        fromDate.getDayOfWeek();
-        fromDate.getMonthValue();
-        fromDate.getYear();
+        
        
-       toDate.getDayOfWeek();
-       toDate.getMonthValue();
-       toDate.getYear();
        //dateofcheckout = Integer.parseInt(toDate);
        
       
-        
+          //return numOfRooms;
+          /* fromDate.getDayOfWeek();
+           fromDate.getMonthValue();
+           fromDate.getYear();
+
+           toDate.getDayOfWeek();
+           toDate.getMonthValue();
+           toDate.getYear();*/
+        String myRoomType;
+//        switch([possibleVar])
+//        {
+//            case [condition1] : 
+//                [do what...]
+//                    break;
+//                    
+//            case [condition1] : 
+//                [do what...]
+//                    break;
+//                    
+//        }
+//        
+//        if
+//                (roomType.HANDI == )
+//        
+//           switch (roomType)
+//           {
+//                   case instance roomType.REG :   
+//                       myRoomType = "REG";
+//                        break;
+//                   case 2: roomType.SUITE = "SUITE";
+//                        break;
+//                   case 3: roomType.HANDI = "HANDI";
+//                        break;
+//           }
+                   
        if(numOfRooms ==1 && numOfRooms <=5)
        {
-            //return numOfRooms;
+           fromDate.getDayOfWeek();
+           fromDate.getMonthValue();
+           fromDate.getYear();
+
+           toDate.getDayOfWeek();
+           toDate.getMonthValue();
+           toDate.getYear();
        }
        else 
        {
@@ -52,5 +95,21 @@ public class HotelRoom {
         */
 
     }   
+
+    /**
+     * @return the myNum
+     */
+    public static int getMyNum() 
+    {
+        return myNum;
+    }
+
+    /**
+     * @param aMyNum the myNum to set
+     */
+    public static void setMyNum(int aMyNum) 
+    {
+        myNum = aMyNum;
+    }
 
 }

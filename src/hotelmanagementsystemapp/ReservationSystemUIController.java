@@ -6,8 +6,10 @@
 package hotelmanagementsystemapp;
 
 
-import hotelmanagementsystemapp.SystemConstants.RoomTypeConst;
+import hotelmanagementsystemapp.SysConstants.RoomTypeConst;
+import hotelroom.HotelRoom;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -115,12 +117,22 @@ public class ReservationSystemUIController implements Initializable
     void onClickedSearchBtn(MouseEvent event) 
     {
         
-        //param1: LocalDate, param2: LocalDate
+            //param1: LocalDate, param2: LocalDate
             System.out.println("from date: "+fromBookingDatePicker.getValue());
             System.out.println("from date: "+toBookingDatePicker.getValue());
             System.out.println("roomType: "+roomBookingTypeComboBox.getSelectionModel().getSelectedItem());
             System.out.println("num of selected rooms: "+numOfBookedRoomsComboBox.getValue());
             
+            HotelRoom myHotelRoom = new HotelRoom();
+            LocalDate fromDate = fromBookingDatePicker.getValue();
+            LocalDate toDate = fromBookingDatePicker.getValue();
+            RoomTypeConst roomType = roomBookingTypeComboBox.getSelectionModel().getSelectedItem();
+            int numOfBookedRooms = numOfBookedRoomsComboBox.getValue();
+
+            myHotelRoom.bookRoom(fromDate, toDate, roomType, numOfBookedRooms);
+            
+            
+
     }
 
     private void setupRoomBookingComboBox() 

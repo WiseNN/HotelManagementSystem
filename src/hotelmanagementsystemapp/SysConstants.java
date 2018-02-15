@@ -9,9 +9,9 @@ package hotelmanagementsystemapp;
  *
  * @author norriswise
  */
-public class SystemConstants {
+public class SysConstants {
     
-    enum RoomTypeConst {
+    public enum RoomTypeConst {
         SUITE, REG, HANDI
     }
     
