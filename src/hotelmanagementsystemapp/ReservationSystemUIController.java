@@ -26,7 +26,6 @@ import javafx.scene.web.WebView;
 public class ReservationSystemUIController implements Initializable
 
 {
-
     @FXML
     private HBox navBtnBar;
 
@@ -121,34 +120,29 @@ public class ReservationSystemUIController implements Initializable
             System.out.println("from date: "+toBookingDatePicker.getValue());
             System.out.println("roomType: "+roomBookingTypeComboBox.getSelectionModel().getSelectedItem());
             System.out.println("num of selected rooms: "+numOfBookedRoomsComboBox.getValue());
-                                            
             
-                
-                
-        
-        
-        
-        
-
     }
 
     private void setupRoomBookingComboBox() 
     {
         //instantiate combobox for roomTypeSelection
-         ObservableList<SystemConstants.RoomTypeConst> roomTypes = FXCollections.observableArrayList(
+         ObservableList<RoomTypeConst> roomTypes = FXCollections.observableArrayList(
         RoomTypeConst.REG,
         RoomTypeConst.SUITE,
         RoomTypeConst.HANDI
     );
+         
          roomBookingTypeComboBox.setItems(roomTypes);
+         
     }
 
-    private void setupNumOfBookedRoomsComboBox() {
+    private void setupNumOfBookedRoomsComboBox() 
+    {
         
          ObservableList<Integer> maxNumOfRooms = FXCollections.observableArrayList(1,2,3,4,5);
         
         numOfBookedRoomsComboBox.setItems(maxNumOfRooms);
-    }
+    };
 
     
 
