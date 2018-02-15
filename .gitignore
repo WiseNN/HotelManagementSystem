@@ -1,7 +1,7 @@
 build/
 dist/
-idea/
+.idea/
 nbproject/
-DS_Store/
+.DS_Store/
 manifest.mf
 build.xml
