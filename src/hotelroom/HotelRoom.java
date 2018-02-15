@@ -5,6 +5,7 @@
  */
 package hotelroom;
 
+import hotelmanagementsystemapp.SysConstants;
 import java.time.LocalDate;
 import hotelmanagementsystemapp.SysConstants.RoomTypeConst;
 
@@ -27,50 +28,47 @@ public class HotelRoom
     {
       // Scanner names = new Scanner(System.in);
     }
-    public void bookRoom(LocalDate fromDate, LocalDate toDate, RoomTypeConst roomType, int numOfRooms)
+    //
+    public void bookRoom(LocalDate fromDate, LocalDate toDate, SysConstants.RoomTypeConst roomType, int numOfRooms)
     {
         
       
         
        
-       //dateofcheckout = Integer.parseInt(toDate);
-       
-      
-          //return numOfRooms;
-          /* fromDate.getDayOfWeek();
-           fromDate.getMonthValue();
-           fromDate.getYear();
+/*
+        
+Make it so that each room type can be compared with the UI 
+    1. if RoomTypeConst is set to HANDI the compare 
+    2. else if RoomTypeConst is set to REG the compare
+`   3. else if RoomTypeConst is set to HANDI the compare 
+    4. else send error 
 
-           toDate.getDayOfWeek();
-           toDate.getMonthValue();
-           toDate.getYear();*/
-        String myRoomType;
-//        switch([possibleVar])
-//        {
-//            case [condition1] : 
-//                [do what...]
-//                    break;
-//                    
-//            case [condition1] : 
-//                [do what...]
-//                    break;
-//                    
-//        }
-//        
-//        if
-//                (roomType.HANDI == )
-//        
-//           switch (roomType)
-//           {
-//                   case instance roomType.REG :   
-//                       myRoomType = "REG";
-//                        break;
-//                   case 2: roomType.SUITE = "SUITE";
-//                        break;
-//                   case 3: roomType.HANDI = "HANDI";
-//                        break;
-//           }
-                   
+*/
+        //if RoomType is set to HANDI then compare to the roomType
+        if(RoomTypeConst.HANDI == roomType)
+        {//lllll
+            //if it succededs then print out the room type that was just compared
+           System.out.print("HANDI"); 
+        }
+        //else if RoomType is set to REG then compare to the roomType
+        else if(RoomTypeConst.REG == roomType)
+        {
+            //if it succededs then print out the room type that was just compared
+            System.out.print("REG"); 
+        }
+        //else if RoomType is set to SUITE then compare to the roomType
+        else if(RoomTypeConst.SUITE == roomType)
+        {
+            //if it succededs then print out the room type that was just compared
+            System.out.print("SUITE"); 
+        }
+        else 
+        {
+            //else send error 
+            System.out.print("Error"); 
+        }
+        
+        
        if(numOfRooms ==1 && numOfRooms <=5)
        {
            fromDate.getDayOfWeek();
