@@ -5,8 +5,12 @@
  */
 package hotelmanagementsystemapp;
 
+
+import hotelmanagementsystemapp.SystemConstants.RoomTypeConst;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -33,10 +37,10 @@ public class ReservationSystemUIController implements Initializable
     private DatePicker toBookingDatePicker;
 
     @FXML
-    private ComboBox<?> roomBookingTypeComboBox;
+    private ComboBox<RoomTypeConst> roomBookingTypeComboBox;
 
     @FXML
-    private ComboBox<?> numOfBookedRoomsComboBox;
+    private ComboBox<Integer> numOfBookedRoomsComboBox;
 
     @FXML
     private Button searchBookingBtn;
@@ -86,6 +90,12 @@ public class ReservationSystemUIController implements Initializable
     public void initialize(URL location, ResourceBundle resources) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
          calenderResultsWebView.getEngine().load("http://google.com");
+         
+         setupRoomBookingComboBox();
+         setupNumOfBookedRoomsComboBox();
+         
+         
+         
         
         
     }
@@ -93,7 +103,7 @@ public class ReservationSystemUIController implements Initializable
     @FXML
     void onBarClicked(MouseEvent event) 
     {
-
+         
     }
 
     @FXML
@@ -105,7 +115,39 @@ public class ReservationSystemUIController implements Initializable
     @FXML
     void onClickedSearchBtn(MouseEvent event) 
     {
+        
+        //param1: LocalDate, param2: LocalDate
+            System.out.println("from date: "+fromBookingDatePicker.getValue());
+            System.out.println("from date: "+toBookingDatePicker.getValue());
+            System.out.println("roomType: "+roomBookingTypeComboBox.getSelectionModel().getSelectedItem());
+            System.out.println("num of selected rooms: "+numOfBookedRoomsComboBox.getValue());
+                                            
+            
+                
+                
+        
+        
+        
+        
 
+    }
+
+    private void setupRoomBookingComboBox() 
+    {
+        //instantiate combobox for roomTypeSelection
+         ObservableList<SystemConstants.RoomTypeConst> roomTypes = FXCollections.observableArrayList(
+        RoomTypeConst.REG,
+        RoomTypeConst.SUITE,
+        RoomTypeConst.HANDI
+    );
+         roomBookingTypeComboBox.setItems(roomTypes);
+    }
+
+    private void setupNumOfBookedRoomsComboBox() {
+        
+         ObservableList<Integer> maxNumOfRooms = FXCollections.observableArrayList(1,2,3,4,5);
+        
+        numOfBookedRoomsComboBox.setItems(maxNumOfRooms);
     }
 
     
