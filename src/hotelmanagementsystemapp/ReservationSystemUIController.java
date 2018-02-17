@@ -87,7 +87,7 @@ public class ReservationSystemUIController implements Initializable
         
     
     */
-    
+    Sqllc s = null;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -95,6 +95,7 @@ public class ReservationSystemUIController implements Initializable
          
          setupRoomBookingComboBox();
          setupNumOfBookedRoomsComboBox();
+         s = new Sqllc();
          
          
          
@@ -132,7 +133,7 @@ public class ReservationSystemUIController implements Initializable
 
             myHotelRoom.bookRoom(fromDate, toDate, roomType, numOfBookedRooms);
             
-            Sqllc s = new Sqllc();
+            
         System.out.println("verify print");
         int temproomnummber = 102;
             s.insertCID(2, 3, 4);
