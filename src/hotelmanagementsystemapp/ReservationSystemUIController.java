@@ -8,6 +8,7 @@ package hotelmanagementsystemapp;
 
 import hotelmanagementsystemapp.SysConstants.RoomTypeConst;
 import hotelroom.HotelRoom;
+import hotelroom.Sqllc;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -86,7 +87,7 @@ public class ReservationSystemUIController implements Initializable
         
     
     */
-    
+    Sqllc s = null;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -94,6 +95,7 @@ public class ReservationSystemUIController implements Initializable
          
          setupRoomBookingComboBox();
          setupNumOfBookedRoomsComboBox();
+         s = new Sqllc();
          
          
          
@@ -130,6 +132,19 @@ public class ReservationSystemUIController implements Initializable
             int numOfBookedRooms = numOfBookedRoomsComboBox.getValue();
 
             myHotelRoom.bookRoom(fromDate, toDate, roomType, numOfBookedRooms);
+            
+            
+        System.out.println("verify print");
+        int temproomnummber = 102;
+            s.insertCID(2, 3, 4);
+            s.insertCOD(2, 3, 4);
+            s.insertRoom(temproomnummber, "Suite");
+            s.getCheckInDay(2, 3, 4);
+            s.getCheckInMonth(2, 3, 4);
+            s.getCheckInYear(2, 3, 4);
+            s.getCheckOutMonth(2, 3, 4);
+            s.getCheckOutYear(2, 3, 4);
+            s.getRoomType( temproomnummber);
             
             
 
